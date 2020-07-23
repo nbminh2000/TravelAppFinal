@@ -1,680 +1,242 @@
-export const categories = [
-  {
-    id: 3,
-    name: 'Cookies',
-    photo_url:
-    'https://www.telegraph.co.uk/content/dam/Travel/2019/January/france-food.jpg?imwidth=1400'
-  },
+import React from 'react';
+import axios from 'axios';
+
+// export var cities = [];
+// export var places = [];
+
+export class getApi extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      places: [],
+      cities: []
+    }
+  }
+
+  componentDidMount() {
+    axios.get({
+      uri: 'http://192.168.1.222/TravelApp/public/place'
+    }).then(res => this.setState({ places: res.data }))
+      .catch(err => console.log(err))
+
+    axios.get({
+      uri: 'http://192.168.1.222/TravelApp/public/city'
+    }).then(res => this.setState({ cities: res.data }))
+      .catch(err => console.log(err))
+  }
+}
+
+
+// export class getCity extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       cities: []
+//     }
+//   }
+
+//   componentDidMount() {
+//     axios.get({
+//       uri: 'http://192.168.1.222/TravelApp/public/city'
+//     }).then(res => this.setState({ cities: res.data }))
+//       .catch(err => console.log(err))
+//   }
+// }
+
+// cities = getApi.cities;
+// places = getApi.places;
+
+
+
+
+
+
+export const cities = [
   {
     id: 1,
-    name: 'Mexican Food',
-    photo_url: 'https://ak1.picdn.net/shutterstock/videos/19498861/thumb/1.jpg'
+    name: 'Đà Nẵng',
+    description: 'Đà Nẵng là một thành phố trực thuộc trung ương, nằm trong vùng Duyên hải Nam Trung Bộ Việt Nam, là thành phố trung tâm và lớn nhất khu vực miền Trung - Tây Nguyên.',
+    photo_url:
+    'https://img1.kienthucvui.vn/uploads/2019/08/15/hinh-anh-dep-nhat-ve-da-nang_102908849.jpg'
   },
   {
     id: 2,
-    name: 'Italian Food',
+    name: 'An Giang',
+    description: 'An Giang là một tỉnh thuộc vùng đồng bằng sông Cửu Long, Việt Nam. An Giang là tỉnh có dân số đông nhất đồng bằng sông Cửu Long, thuộc miền Nam Việt Nam. Một phần của An Giang nằm trong tứ giác Long Xuyên.',
     photo_url:
-      'https://images.unsplash.com/photo-1533777324565-a040eb52facd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+    'https://baoangiang.com.vn/image/fckeditor/upload/2020/20200224/images/t1b.jpg'
+  },
+  {
+    id: 3,
+    name: 'Bà Rịa - Vũng Tàu',
+    description: 'Bà Rịa – Vũng Tàu là một tỉnh ven biển thuộc vùng Đông Nam Bộ, Việt Nam. Nằm trong vùng kinh tế trọng điểm phía Nam, ở vị trí cửa ngõ ra biển Đông của các tỉnh trong khu vực miền Đông Nam Bộ, Bà Rịa – Vũng Tàu kết nối thuận lợi với Thành phố Hồ Chí Minh và các địa phương khác bằng đường bộ, đường không, đường thủy và ...',
+    photo_url:
+    'https://media.baodautu.vn/Images/manhcuong/2019/05/20/ba-ria---vung-tau-khai-thong-tiem-luc-de-phat-trien-kinh-te1558292053.jpg'
   },
   {
     id: 4,
-    name: 'Smoothies',
+    name: 'Lâm Đồng',
+    description: 'Đà Nẵng là một thành phố trực thuộc trung ương, nằm trong vùng Duyên hải Nam Trung Bộ Việt Nam, là thành phố trung tâm và lớn nhất khu vực miền Trung - Tây Nguyên.',
     photo_url:
-    'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/still-life-of-three-fresh-smoothies-in-front-of-royalty-free-image-561093647-1544042068.jpg?crop=0.715xw:0.534xh;0.0945xw,0.451xh&resize=768:*'
+    'https://baoxaydung.com.vn/stores/news_dataimages/vananh/032019/22/09/094915baoxaydung_image001.jpg'
   },
   {
-    id: 0,
-    name: 'Pizza',
-    photo_url: 'https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg'
+    id: 5,
+    name: 'Hà Nội',
+    description: 'Hà Nội, thủ đô của Việt Nam, nổi tiếng với kiến trúc trăm tuổi và nền văn hóa phong phú với sự ảnh hưởng của khu vực Đông Nam Á, Trung Quốc và Pháp. Trung tâm thành phố là Khu phố cổ nhộn nhịp, nơi các con phố hẹp được mang tên \"hàng\". Có rất nhiều ngôi đền nhỏ, bao gồm Bạch Mã, tôn vinh một con ngựa huyền thoại, cùng với chợ Đồng Xuân, bán hàng gia dụng và thức ăn đường phố.',
+    photo_url:
+    'https://cms.luatvietnam.vn/uploaded/Images/Original/2018/11/15/nhap-ho-khau-ha-noi_1511142628.jpeg'
+  },
+  {
+    id: 6,
+    name: 'Thành phố Hồ Chí Minh',
+    description: 'Thành phố Hồ Chí Minh (thường được gọi là Sài Gòn) là một thành phố ở miền nam Việt Nam nổi tiếng với vai trò nòng cốt trong chiến tranh Việt Nam. Sài Gòn cũng được biết đến với địa danh của thực dân Pháp, trong đó có Nhà thờ Đức Bà được xây dựng hoàn toàn bằng nguyên liệu nhập khẩu từ Pháp và Bưu điện trung tâm được xây dựng vào thế kỷ 19. Quán ăn nằm dọc các đường phố Sài Gòn, nhất là xung quanh chợ Bến Thành nhộn nhịp.',
+    photo_url:
+    'https://qhkt.hochiminhcity.gov.vn/Media/Uploads/Tin%20t%E1%BB%A9c/Nam%202019/Qu%C3%BD%201/images2304061_sggphoanghung_pept.jpg'
   },
 ];
 
-export const recipes = [
+export const places = [
   {
-    recipeId: 122,
-    categoryId: 3,
-    title: 'Oatmeal Cookies',
-    photo_url: 'https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg',
+    placeID: 1,
+    cityId: 1,
+    title: 'Ngũ Hành Sơn',
+    photo_url: 'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-ngu-hanh-son.jpg',
     photosArray: [
-      'https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg',
-      "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
-      'https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg',
-      'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e',
-      'https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg'
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-ngu-hanh-son.jpg'
     ],
-    time: '15',
-    ingredients: [[0, '200ml'], [1, '5g'], [2, '300g']],
     description:
-      '-- Start with cleaned and peeled russet potatoes that you have cut into 3/8-inch match sticks. Place in bowl of very cold water: keep rinsing and changing the water until the water is clear; drain thoroughly and dry with paper towels or a clean lint-free kitchen towel.\n\n -- Meanwhile, you preheat your hot oil to 350 degrees F. Place prepared taters in oil and cook about 5 minutes. They will have that blond-tone color to them. \n\n -- Note: Once you add cold potatoes to the hot oil, the temperature of your oil is going to drop - you want it to be somewhere between 330 - 325 degrees F. \n\n -- Remove from oil; drain and cool. Now - either refrigerate until ready to finish cooking, or cool completely and freeze up to 3 months. To freeze properly - place completely cooled fries in single layer on tray and place in freezer until frozen. Then bag them.\n\n -- To finish cooking - preheat your oil to 400* F. Add your cold fries (which will drop the oil temp - which is fine because you want it near the 375 degrees F. temp) and cook a few minutes until done. Lightly salt them and shake well so that the salt distributes well and they are not salty.'
+      'Núi Ngũ Hành Sơn thuộc phường Hòa Hải, quận Ngũ Hành Sơn, cách thành phố Đà Nẵng 7km, gồm 5 ngọn núi đá: Kim Sơn, Mộc Sơn, Thủy Sơn, Hỏa Sơn, Thổ Sơn – khiến du khách liên tưởng đến cụm hòn non bộ nổi lên quanh cồn cát đầy đá, rộng thênh thang, quanh năm sóng vỗ. Thông thường, khách đến đây thường đến các ngọn núi lớn như Thủy Sơn, ghé hang động Huyền Không, Linh Nham, Vân Thông, Lăng Hư, Vân Nguyệt và chùa Tam Thai. Dưới chân cụm Ngũ Hành Sơn là những tác phẩm điêu khắc từ đá bởi các nghệ nhân ở làng đá mỹ nghệ Non Nước.'
   },
   {
-    recipeId: 3,
-    categoryId: 4,
-    title: 'Triple Berry Smoothie',
+    placeID: 2,
+    cityId: 1,
+    title: 'Bà Nà Hills',
     photo_url:
-      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-how-to-make-a-smoothie-horizontal-1542310071.png?crop=0.803xw:0.923xh;0.116xw,0.00510xh&resize=768:*',
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-ba-na-hill.jpg',
     photosArray: [
-      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-how-to-make-a-smoothie-horizontal-1542310071.png?crop=0.803xw:0.923xh;0.116xw,0.00510xh&resize=768:*',
-      'https://www.vitamix.com/media/other/images/xVitamix-Triple-Berry-Smoothie-square-crop__1.jpg.pagespeed.ic.OgTC3ILD3R.jpg',
-      'http://images.media-allrecipes.com/userphotos/960x960/3798204.jpg',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrzui8MM6W66I29VZwVvcjpGv99JW3O1owgupc3KwB65rhAyrZ'
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-ba-na-hill.jpg'
     ],
-    time: '10',
-    ingredients: [
-      [59, '1'],
-      [60, '1/2 lbs'],
-      [61, '1/2 liters'],
-    ],
-    description: 'In a blender, combine all ingredients and blend until smooth. Then divide between 2 cups and top with blackberries, if desired.'
+    description: 'Nằm tại xã Hòa Ninh, huyện Hòa Vang, núi Bà Nà cách Đà Nẵng 40km về hướng Tây Nam. Với những giá trị sinh thái lớn, núi Bà Nà là khu dự trữ thiên nhiên của Quốc Gia. Núi cao 1.489m so với mực nước biển. Tại đây, du khách có thể cảm nhận 4 mùa riêng biệt trong cùng 1 ngày: mùa xuân – buổi sáng, mùa hè – buổi trưa, mùa thu – buổi chiều, mùa đông – buổi tối. Tại Bà Nà, thời tiết luôn khô ráo, ít khi có mưa, nhiệt độ trung bình là 18 độ C. Sau khi đi cáp treo dài và dốc, từ đỉnh núi, khách du lịch được ngắm bao quát không gian mênh mông từ thành phố Đà Nẵng, biển, cho đến những cánh đồng xanh bất tận. Hiện, công viên giải trí Fantasy Park – nằm trong khuôn viên khu du lịch nghỉ dưỡng Bà Nà Hills – với mọi trò chơi giải trí phù hợp với các lứa tuổi, từ trẻ em với những trò vui nhộn đến thanh niên, người lớn với những trò cảm giác mạnh. Bạn còn có thể tìm thấy 3 khu ẩm thực phục vụ món ăn Âu, Á đầy hấp dẫn và các quầy hàng lưu niệm với đủ các sản phẩm đa dạng chủng loại.'
   },
   {
-    recipeId: 2,
-    categoryId: 3,
-    title: 'Vegan Cookies',
-    photo_url: 'https://www.texanerin.com/content/uploads/2018/06/no-bake-lactation-cookies-1-650x975.jpg',
+    placeID: 3,
+    cityId: 1,
+    title: 'Cầu Vàng Đà Nẵng',
+    photo_url: 'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-cau-vang-da-nang.jpg',
     photosArray: [
-      'https://www.texanerin.com/content/uploads/2018/06/no-bake-lactation-cookies-1-650x975.jpg',
-      'https://ichef.bbci.co.uk/news/660/cpsprodpb/B2C0/production/_106106754_vegnuggets976.jpg',
-      'https://pixel.nymag.com/imgs/daily/grub/2017/11/22/22-mcds-chicken-tenders.w330.h330.jpg',
-      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fcdn-img.health.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Flarge_16_9%2Fpublic%2Fstyles%2Fmain%2Fpublic%2Fgettyimages-508510211.jpg%3Fitok%3Dh-Uryi8r&w=400&c=sc&poi=face&q=85'
-    ],
-    time: '30',
-    ingredients: [
-      [0, '2 quarts'],
-      [16, '1'],
-      [12, '1 cup'],
-      [18, '1 cup'],
-      [19, '1 teaspoon'],
-      [1, '2 teaspoons'],
-      [4, '1/4 teaspoons'],
-      [7, '1/8 teaspoons'],
-      [20, '1/2 teaspoons'],
-      [21, '4']
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-cau-vang-da-nang.jpg'
     ],
     description:
-      '-- Beat the egg and then combine it with water in a bowl. Stir. Combine the flour, salt, MSG, pepper, onion powder and garlic powder in a gallon size zip lock bag. Pound each of the breast filets until about 1/4-inch thick. Then cut into bite sized pieces. Coat each piece with the flour mixture by shaking in the zip lock bag. Remove and coat in the egg mixture. Then coat in the flour mixture again. Shake to coat. Deep fry at 375 degrees for 10-12 minutes, until browned and crispy.'
+      'Được xây dựng ở độ cao 1400m so với mực nước biển, cầu có chiều dài 148.6m, chia thành 8 nhịp, nhịp dài nhất khoảng 21.2m. Là một cây cầu đi bộ, cây cầu Vàng Đà Nẵng sở hữu bề ngang mặt cầu là 3 m với vật liệu mặt cầu là gỗ kiềng dày 5cm để bạn có thể tha hồ vui chơi, nhảy nhót. Điểm đặc biệt làm nên cái tên chính là khung lan can inox mạ vàng. Thuộc khu Resort Bà Nà Hills, Cầu Vàng đã gây rúng động truyền thông trong suốt năm 2018 vừa qua.'
   },
   {
-    recipeId: 3,
-    categoryId: 3,
-    title: 'Pumpkin Spice Cookies',
+    placeID: 4,
+    cityId: 1,
+    title: 'Bán đảo Sơn Trà',
     photo_url:
-      'https://www.texanerin.com/content/uploads/2018/11/pumpkin-spice-cookies-4-650x975.jpg',
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-ban-dao-son-tra.jpg',
     photosArray: [
-      'https://www.texanerin.com/content/uploads/2018/11/pumpkin-spice-cookies-4-650x975.jpg',
-      'https://cdn.junglecreations.com/wp/junglecms/2018/07/4164c5bd-wide-thumbnail.jpg',
-      'https://pinchofyum.com/wp-content/uploads/Crunchwrap-Inside.jpg',
-      'https://monsonmadethis.com/wp-content/uploads/2017/10/IMG_20171015_161017_025-e1533869302263.jpg'
-    ],
-    time: '45',
-    ingredients: [
-      [0, '2 tablespoons'],
-      [22, '1/2'],
-      [23, '2 tablespoons'],
-      [7, '2 cloves'],
-      [3, '1 teaspoon'],
-      [24, '1 tablespoon'],
-      [25, '1 lb'],
-      [1, '2 teaspoons'],
-      [4, '2 teaspoons'],
-      [26, '15 oz'],
-      [27, '8'],
-      [28, '2'],
-      [29, '1 cup']
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-ban-dao-son-tra.jpg'
     ],
     description:
-      '-- In a medium pot over medium heat, heat 1 tablespoon oil. Add onion and cook until soft, 5 minutes. Add garlic and cook until fragrant, 1 minute more. Add tomato paste and stir to coat onion and garlic. Add ground beef and cook, breaking up meat with a wooden spoon, until no longer pink, 6 minutes. Drain fat.\n\n -- Return beef to pot and season with chili powder, paprika, salt, and pepper. Add tomato sauce and kidney beans. Bring to a boil, then reduce heat and let simmer 15 minutes. Add some chili to center of each tortilla, leaving room to fold in edges. Top with Fritos, then cheddar. Fold edges of tortillas toward the center, creating pleats. Invert Crunchwraps so pleats are on the bottom and stay together.\n\n -- In medium skillet over medium heat, heat remaining tablespoon oil. Add a Crunchwrap seam side down and cook until tortilla is golden, 3 to 5 minutes per side. Repeat with remaining Crunchwraps'
+      'Đây là một bán đảo hình nấm thuộc quận Sơn Trà, cách trung tâm 10km về hướng Đông Bắc. Đến đây, du khách sẽ được khám phá rừng già Sơn Trà, tắm biển ở bãi Bụt, bãi tắm Mỹ Khê, câu cá cùng ngư dân, thăm hải đăng Tiên Sa, lặn biển ngắm san hô. Ngoài ra, quý khách còn được tham quan chùa Linh Ứng – chùa tựa đỉnh Sơn Trà với bức tượng Phật Bổn Sư Thích Ca Mô Ni chính giữa cùng phật Quan Thế Âm Bồ Tát bên phải, Tam Tạng Phật bên trái với bốn vị Thần Long Hộ Pháp cùng 18 vị La Hán bảo vệ chính điện. Cạnh đó, có suối Mơ trong vắt, ngọn thác Tóc Tiên, và mũi Nghê – nơi vinh hạnh được đón ánh nắng bình minh đầu tiên của Đà Nẵng.'
   },
   {
-    recipeId: 1,
-    categoryId: 3,
-    title: 'Brownies',
-    photo_url: 'https://www.texanerin.com/content/uploads/2018/01/coconut-flour-brownies-1-650x975.jpg',
+    placeID: 5,
+    cityId: 1,
+    title: 'Đèo Hải Vân',
+    photo_url: 'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-deo-hai-van.jpg',
     photosArray: [
-      'https://www.texanerin.com/content/uploads/2018/01/coconut-flour-brownies-1-650x975.jpg',
-      'https://images-gmi-pmc.edge-generalmills.com/6fbc6859-e2b1-499d-b0fa-ada600c9cc3f.jpg',
-      'http://www.recipe4living.com/assets/itemimages/400/400/3/83c29ac7418067c2e74f31c8abdd5a43_477607049.jpg',
-      'https://www.franchisechatter.com/wp-content/uploads/2014/08/KFC-Photo-by-James.jpg'
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-deo-hai-van.jpg'
     ],
-    time: '30',
-    ingredients: [
-      [1, '2 tablespoons'],
-      [3, '1 tablespoon'],
-      [4, '1 teaspoon'],
-      [5, '1/2 teaspoons'],
-      [6, '1/2 teaspoons'],
-      [7, '1/2 teaspoons'],
-      [8, '1/2 teaspoons'],
-      [9, '1/2 teaspoons'],
-      [10, '1/2 teaspoons'],
-      [11, '1/2 teaspoons'],
-      [12, '1/2 cups'],
-      [13, '1 tablespoon'],
-      [14, '1 tablespoon'],
-      [15, '2 breasts, 2 thighs, 2 drumsticks, 2 wings'],
-      [16, '1'],
-      [17, '2 quarts']
-    ],
+
     description:
-      '-- Preheat fryer to 350°F. Thoroughly mix together all spices. Combine spices with flour, brown sugar and salt. Dip chicken pieces in egg white to lightly coat them, then transfer to flour mixture. Turn a few times and make sure the flour mix is really stuck to the chicken.\n\n -- Repeat with all the chicken pieces. Let chicken pieces rest for 5 minutes so crust has a chance to dry a bit. Fry chicken in batches. Breasts and wings should take 12-14 minutes, and legs and thighs will need a few more minutes. Chicken pieces are done when a meat thermometer inserted into the thickest part reads 165°F. Let chicken drain on a few paper towels when it comes out of the fryer. Serve hot.'
+      'Nằm giữa địa giới tỉnh Thừa Thiên Huế và thành phố Đà Nẵng là đèo Hải Vân với độ dài 20km, cao 500m so với mức nước biển. Đèo Hải Vân nổi tiếng là đường đèo đẹp và hiểm trở nhất Việt Nam. Từ đỉnh đèo, du khách được ngắm những phong cảnh ấn tượng về dải bờ biển vô cùng đẹp của Việt Nam. Với làng chài Lăng Cô đẹp như tranh vẽ, đỉnh Sơn Trà mây phủ quanh năm, cát trắng phai của bãi Non Nước,…'
   },
   {
-    recipeId: 4,
-    categoryId: 1,
-    title: 'Perfect Fish Tacos',
-    photo_url: 'https://hips.hearstapps.com/hmg-prod/images/190307-fish-tacos-112-1553283299.jpg',
+    placeID: 6,
+    cityId: 1,
+    title: 'Bãi biển Mỹ Khê',
+    photo_url: 'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-bien-my-khe.jpg',
     photosArray: [
-      'http://d2814mmsvlryp1.cloudfront.net/wp-content/uploads/2014/04/WGC-Fish-Tacos-copy-2.jpg',
-      'https://thecozyapron.com/wp-content/uploads/2018/03/baja-fish-tacos_thecozyapron_1.jpg',
-      'https://www.simplyrecipes.com/wp-content/uploads/2017/06/2017-07-22-FishTacos-6.jpg'
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-bien-my-khe.jpg',
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-bien-my-khe.jpg',
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-bien-my-khe.jpg'
     ],
-    time: '35',
-    ingredients: [
-      [30, 'jucie of 1 '],
-      [24, '2 teaspoons'],
-      [0, '3 tablespoons'],
-      [3, '1 teaspoon'],
-      [31, '1/2 teaspoons'],
-      [32, '1/2 teaspoons'],
-      [4, '2 teaspoons'],
-      [33, '1/2 lb'],
-      [27, '8'],
-      [14, '2 teasponns'],
-      [34, '1']
-    ],
+
     description:
-      '-- In a medium shallow bowl, whisk together olive oil, lime juice, paprika, chili powder, cumin, and cayenne. Add cod, tossing until evenly coated. Let marinate 15 minutes. Meanwhile, make slaw: In a large bowl, whisk together mayonnaise, lime juice, cilantro, and honey. Stir in cabbage, corn, and jalapeño. Season with salt and pepper.\n\n -- In a large nonstick skillet over medium-high heat, heat vegetable oil. Remove cod from marinade and season both sides of each filet with salt and pepper. Add fish flesh side-down. Cook until opaque and cooked through, 3 to 5 minutes per side.\n\n -- Let rest 5 minutes before flaking with a fork. Assemble tacos: Serve fish over grilled tortillas with corn slaw and avocado. Squeeze lime juice on top and garnish with sour cream. '
+      'Tạp chí Forbes đã bình chọn đây là 1 trong 6 bãi biển quyến rũ nhất hành tinh với chiều dài 900m cùng bãi cát trắng, mịn và đầy thơ mộng vào tháng 7/2013. Đặc biệt, với những du khách yêu thích các hoạt động thể thao cũng được tham gia tập lặn biển, câu cá, lướt ván, ca nô, đá bóng bãi biển… Khi bạn đến vào mùa hè, luôn có những hoạt động giao lưu văn hóa theo chủ đề hàng năm dọc trục bãi biển. Với đội ngũ chuyên nghiệp luôn ngồi trên chòi hay thuyền thúng trên bãi biển, bạn hoàn toàn yên tâm xuống biển trong thời gian từ 5h sáng đến 20h tối hàng ngày. Biển Mỹ Khê không quá xa trung tâm nên rất thuận tiện cho du khách đi lại. Đây là một trong những bãi biển đẹp nhất Việt Nam, thuộc 12 điểm du lịch Đà Nẵng không thể bỏ qua 2019.'
   },
   {
-    recipeId: 5,
-    categoryId: 1,
-    title: 'Chicken Fajitas',
+    placeID: 7,
+    cityId: 1,
+    title: 'Phố cổ Hội An',
     photo_url:
-      'https://tmbidigitalassetsazure.blob.core.windows.net/secure/RMS/attachments/37/1200x1200/Flavorful-Chicken-Fajitas_EXPS_GHBZ18_12540_B08_15_8b.jpg',
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-pho-co-hoi-an.jpg',
     photosArray: [
-      'https://dadwithapan.com/wp-content/uploads/2015/07/Spicy-Chicken-Fajitas-22-1200x480.jpg',
-      'https://3.bp.blogspot.com/-X-dHj7ORF9Q/XH4ssgTuSZI/AAAAAAAAEig/E46HP9wCfdsvyJFcMTX30cw-ICep8lF9ACHMYCw/s1600/chicken-fajitas-mexican-food-id-149559-buzzerg.jpg',
-      'https://cdn-image.foodandwine.com/sites/default/files/styles/medium_2x/public/201403-xl-chipotle-chicken-fajitas.jpg?itok=ghVcI5SQ'
-    ],
-    time: 35,
-    ingredients: [
-      [9, '1/2 teaspoons'],
-      [0, '4 tablespoons'],
-      [1, '1/2 teaspoons'],
-      [30, '2 tablespoons'],
-      [31, '1 teaspoon'],
-      [7, '1 teaspoon'],
-      [24, '1/2 teaspoons'],
-      [3, '1/2 teaspoons'],
-      [21, '1 pound'],
-      [22, '1/2 cup'],
-      [27, '6'],
-      [36, '4'],
-      [37, '1/2'],
-      [38, '1/2']
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-pho-co-hoi-an.jpg',
+      'https://ezcloud.vn/wp-content/uploads/2019/03/12-diem-du-lich-da-nang-pho-co-hoi-an.jpg'
     ],
     description:
-      '-- In a large bowl, combine 2 tablespoons oil, lemon juice and seasonings; add the chicken. Turn to coat; cover. Refrigerate for 1-4 hours In a large skillet, saute peppers and onions in remaining oil until crisp-tender. Remove and keep warm. Drain chicken, discarding marinade. In the same skillet, cook chicken over medium-high heat for 5-6 minutes or until no longer pink.\n\n -- Return pepper mixture to pan; heat through. Spoon filling down the center of tortillas; fold in half. Serve with toppings as desired.'
+      'Cách Đà Nẵng 30km, Hội An – thuộc địa phận tỉnh Quảng Nam – được UNESCO công nhận là di sản văn hóa thế giới năm 1999. Phố cổ Hội An được bảo tồn nguyên vẹn, làm nên nét hấp dẫn với du khách. Những nếp nhà cổ đã được xây dựng hàng trăm năm với tường sơn màu vàng, những con đường nhỏ hẹp sẽ đưa bạn lạc vào một không gian hoài cổ, tránh xa phố thị ồn ào.\r\n\r\nKhi màn đêm buông xuống, phong cảnh phố cổ Hội An càng lung linh với những căn nhà được thắp sáng bởi hàng nghìn chiếc đèn lồng đủ màu sắc. Đừng bỏ lỡ cơ hội đi tản bộ dưới những con đường nhộn nhịp và thưởng thức các món ăn dân dã của phố Hội! Đặc biệt, du khách có thể thả hoa đăng cùng những nguyện ước, và đi thuyền trên sông Hoài để cảm nhận hết vẻ đẹp của đô thị cổ này.'
   },
   {
-    recipeId: 6,
-    categoryId: 2,
-    title: 'Buffalo Pizza',
+    placeID: 8,
+    cityId: 5,
+    title: 'Quảng trường Ba Đình – Lăng Bác',
     photo_url:
-      'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+      'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/06/quang-truong-ba-dinh-54bcaffd67cd7-1.jpg',
     photosArray: [
-      'https://www.tablefortwoblog.com/wp-content/uploads/2019/01/buffalo-chicken-pizza-recipe-photos-tablefortwoblog-3-500x500.jpg',
-      'http://pizzachoicema.com/wp-content/uploads/2018/08/Buffalo-Chicken-Pizza.jpg',
-      'https://static1.squarespace.com/static/565bb41ae4b0509ba9fdf769/t/5b9a8e80aa4a998b0be0fcf4/1536855690622/pizza.gif'
-    ],
-    time: 50,
-    ingredients: [
-      [39, '1 lb'],
-      [40, '1 cup'],
-      [41, '1/2 cup'],
-      [42, '1/4 cup'],
-      [43, '2 tablespoons'],
-      [44, '1/2 cup'],
-      [7, '1/4 teaspoons'],
-      [5, '1/4 teaspoons'],
-      [30, '1/4 teaspoons'],
-      [45, '2 oz'],
-      [12, 'for dusting'],
-      [4, '1/2 teaspoons'],
-      [47, '2'],
-      [46, '9 oz']
+      'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/06/quang-truong-ba-dinh-54bcaffd67cd7-1.jpg'
     ],
     description:
-      '-- Place a rack in upper third of oven. Place a large cast-iron skillet on rack and preheat oven to 500° (or as high as your oven will go). Place pizza dough in a large bowl, pour a little oil over, and turn to coat. Cover bowl with plastic and let dough proof at room temperature while pan and oven heat up.\n\n -- Meanwhile, cook hot sauce, marinara sauce, and butter in a medium saucepan over medium heat, stirring occasionally, until butter is melted. Stir in cream, reduce heat to low, and simmer, stirring occasionally, until slightly thickened and warmed through, about 10 minutes. Heat 1 Tbsp. oil in a large skillet over medium-high. Add chicken, toss to coat, then add ¼ cup Buffalo sauce.\n\n -- Cook chicken, tossing occasionally, until heated through, about 2 minutes. Reduce heat and simmer, stirring often, until chicken is well coated and sauce is slightly thickened, about 5 minutes. Meanwhile, whisk yogurt, lemon juice, celery salt, garlic powder, ¼ cup blue cheese, ½ tsp. pepper, and 2 Tbsp. water in a small bowl, adding more water if sauce seems too thick (it should be pourable); set aside.\n\n -- Turn out dough onto a lightly floured work surface. Shape with your hands into a round that’s slightly larger than the cast-iron skillet you’re using. Take hot skillet out of oven (watch that handle!) and place on a heatproof surface. Add a little flour to pan. Lay dough in skillet, then work edges of dough up sides of skillet with your fingertips (use a rubber spatula or wooden spoon if you’re nervous about touching the hot pan). Drizzle a little oil around inside edge of pan so that it trickles behind and underneath dough, which will encourage browning and help it release.\n\n -- Spread about ⅓ cup Buffalo sauce over dough. Arrange mozzarella over, then top with remaining ¼ cup blue cheese. Arrange chicken mixture on top. Bake pizza on top rack until crust and cheese are nicely browned, 15–20 minutes. Transfer skillet to stovetop (again, watch that handle!) and let pizza rest a few minutes. Using a spatula, slide pizza onto a cutting board or platter. Arrange celery over, then top with reserved blue cheese dressing. Season with pepper, then drizzle with oil.'
+      'Nếu đã đặt chân tới mảnh đất ngàn năm văn hiến thì Lăng Bác – Quảng trường Ba Đình là địa điểm du lịch ở Hà Nội mà các bạn không thể bỏ qua. Nơi đây là trung tâm chính trị của Việt Nam với nhà Quốc hội, Phủ Chủ tịch, Bảo tàng Hồ Chí Minh,… Lăng Bác là nơi lưu giữ thi hài của vị lãnh tụ kính yêu. Bên ngoài lăng là những hàng tre xanh bát ngát. Lăng chủ tích mở cửa vào sáng thứ 3,4,5,7 và chủ nhật. Khi vào viếng lăng Bác, bạn chú ý ăn mặc chỉnh tề, không đem theo các thiết bị điện tử ghi hành và giữ trật tự trong lăng.'
   },
   {
-    recipeId: 0,
-    categoryId: 0,
-    title: 'Classic Lasagna',
-    photo_url: 'https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg',
+    placeID: 9,
+    cityId: 5,
+    title: 'Phố cổ Hà Nội',
+    photo_url: 'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/06/pho-hang-ma-ha-noi.jpg',
     photosArray: [
-      "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
-      'https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg',
-      'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e',
-      'https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg'
+      "https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/06/pho-hang-ma-ha-noi.jpg"
     ],
-    time: '15',
-    ingredients: [[0, '200ml'], [1, '5g'], [2, '300g']],
+
     description:
-      '-- Start with cleaned and peeled russet potatoes that you have cut into 3/8-inch match sticks. Place in bowl of very cold water: keep rinsing and changing the water until the water is clear; drain thoroughly and dry with paper towels or a clean lint-free kitchen towel.\n\n -- Meanwhile, you preheat your hot oil to 350 degrees F. Place prepared taters in oil and cook about 5 minutes. They will have that blond-tone color to them. \n\n -- Note: Once you add cold potatoes to the hot oil, the temperature of your oil is going to drop - you want it to be somewhere between 330 - 325 degrees F. \n\n -- Remove from oil; drain and cool. Now - either refrigerate until ready to finish cooking, or cool completely and freeze up to 3 months. To freeze properly - place completely cooled fries in single layer on tray and place in freezer until frozen. Then bag them.\n\n -- To finish cooking - preheat your oil to 400* F. Add your cold fries (which will drop the oil temp - which is fine because you want it near the 375 degrees F. temp) and cook a few minutes until done. Lightly salt them and shake well so that the salt distributes well and they are not salty.'
+      'Muốn tìm hiểu về cuộc sống, văn hóa và con người Tràng An thì bạn đừng bỏ qua phố cổ – một trong những địa điểm du lịch ở Hà Nội đầy thú vị và hấp dẫn với du khách. Phố cổ Hà Nội nằm ở phía Tây và phía Bắc của Hồ Hoàn Kiếm, là nơi tập trung đông dân cư sinh sống có 36 phố phường. Mỗi con phố ở đây chủ yếu tập trung bán một loại mặt hàng nhất định.'
   },
   {
-    recipeId: 7,
-    categoryId: 2,
-    title: 'Spaghetti Carbonara',
-    photo_url: 'https://truffle-assets.imgix.net/655ce202-862-butternutsquashcarbonara-land.jpg',
+    placeID: 10,
+    cityId: 6,
+    title: 'Chợ Bến Thành',
+    photo_url: 'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/09/cho-ben-thanh-1.png',
     photosArray: [
-      'https://ak3.picdn.net/shutterstock/videos/10431533/thumb/10.jpg',
-      'https://www.kcet.org/sites/kl/files/styles/kl_image_large/public/thumbnails/image/square_hero_desktop_2x_sfs_spaghetti_carbonara_clr-3.jpg?itok=T-rsBDIZ',
-      'https://cdn-image.foodandwine.com/sites/default/files/HD-201104-r-spaghetti-with-anchovy.jpg'
-    ],
-    time: 15,
-    ingredients: [
-      [48, '50g'],
-      [49, '100g'],
-      [50, '350g'],
-      [51, '2 plump'],
-      [42, '50g'],
-      [16, '3'],
-      [1, '2 teaspoons'],
-      [4, '2 teaspoons']
+      'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/09/cho-ben-thanh-1.png'
     ],
     description:
-      '-- Put the egg yolks into a bowl, finely grate in the Parmesan, season with pepper, then mix well with a fork and put to one side. Cut any hard skin off the pancetta and set aside, then chop the meat. Cook the spaghetti in a large pan of boiling salted water until al dente.\n\n -- Meanwhile, rub the pancetta skin, if you have any, all over the base of a medium frying pan (this will add fantastic flavour, or use 1 tablespoon of oil instead), then place over a medium-high heat. Peel the garlic, then crush with the palm of your hand, add it to the pan and leave it to flavour the fat for 1 minute. Stir in the pancetta, then cook for 4 minutes, or until it starts to crisp up. Pick out and discard the garlic from the pan, then, reserving some of the cooking water, drain and add the spaghetti.\n\n -- Toss well over the heat so it really soaks up all that lovely flavour, then remove the pan from the heat. Add a splash of the cooking water and toss well, season with pepper, then pour in the egg mixture – the pan will help to cook the egg gently, rather than scrambling it. Toss well, adding more cooking water until it’s lovely and glossy. Serve with a grating of Parmesan and an extra twist of pepper.'
+      'Chợ Bến Thành nằm ngay trung tâm của thành phố, cả 4 cửa đều hướng ra những con đường lớn như Phan Chu Trinh, Phan Bội Châu và Lê Thánh Tôn, hướng còn lại là quảng trường Quách Thị Trang. Nếu bạn là người thích mua sắm thì hay ghi ngay vào list những địa điểm tham quan Sài Gòn đi nhé! Bên trong chợ bày bán đủ các mặt hàng truyền thống, hiện đại có thể làm quà cho gia đình, bạn bè. Chợ Bến Thành cũng là một trong những địa điểm lý tưởng để thưởng thức những món ăn Việt Nam truyền thống. Dừng chân bên những gian hàng ăn với các món đặc sản địa phương như cá chiên xù hay nhấm nháp vài ly trà đá giải khát. Một lưu ý là khi mua sắm ở đây, các bạn nên mặc để có được giá hời nhất.'
   },
   {
-    recipeId: 8,
-    categoryId: 2,
-    title: 'Lazania',
-    photo_url: 'https://images8.alphacoders.com/817/817353.jpg',
+    placeID: 11,
+    cityId: 6,
+    title: 'Phố đi bộ Nguyễn Huệ',
+    photo_url: 'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/09/pho-di-bo-nguyen-hue.png',
     photosArray: [
-      'https://previews.123rf.com/images/somegirl/somegirl1509/somegirl150900048/46103208-top-view-of-a-delicious-traditional-italian-lasagna-made-with-minced-beef-bolognese-sauce-topped-wit.jpg',
-      'https://truffle-assets.imgix.net/87f324e4-YOUTUBE-NO-TXT.00_03_19_14.Imagen_fija001.jpg',
-      'https://images4.alphacoders.com/817/817350.jpg'
-    ],
-    time: 60,
-    ingredients: [
-      [36, '1 large'],
-      [25, '1 pound'],
-      [51, '5 cloves'],
-      [52, '1 pound'],
-      [53, '1 pound'],
-      [54, '1 28 ounce can'],
-      [23, '2 6 ounce can'],
-      [55, '2 tablespoons'],
-      [56, '1/4 cup'],
-      [10, '1/2 cup'],
-      [1, '1/2 teaspoons'],
-      [58, '1 teaspoon'],
-      [4, '1/4 teaspoons'],
-      [16, '1 large'],
-      [46, '1 pound'],
-      [48, '1 cup'],
-      [57, '30 ounces']
+      'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/09/pho-di-bo-nguyen-hue.png'
     ],
     description:
-      '-- Cook noodles according to package directions; drain. Meanwhile, in a Dutch oven, cook sausage, beef and onion over medium heat 8-10 minutes or until meat is no longer pink, breaking up meat into crumbles. Add garlic; cook 1 minute. Drain. Stir in tomatoes, tomato paste, water, sugar, 3 tablespoons parsley, basil, fennel, 1/2 teaspoon salt and pepper; bring to a boil. Reduce heat; simmer, uncovered, 30 minutes, stirring occasionally. In a small bowl, mix egg, ricotta cheese, and remaining parsley and salt. Preheat oven to 375°. Spread 2 cups meat sauce into an ungreased 13x9-in. baking dish. Layer with 3 noodles and a third of the ricotta mixture. Sprinkle with 1 cup mozzarella cheese and 2 tablespoons Parmesan cheese.\n\n -- Repeat layers twice. Top with remaining meat sauce and cheeses (dish will be full). Bake, covered, 25 minutes. Bake, uncovered, 25 minutes longer or until bubbly. Let stand 15 minutes before serving.'
+      'Phố đi bộ Nguyễn Huệ là cái tên không thể thiếu trong những địa điểm tham quan Sài Gòn. Được xây dựng vào tháng 4 năm 2015, có chiều dài 670m và chiều rộng 64m. Tạo lạc ngay trung tâm Sài Gòn, phố đi bộ nổi bật với nền đá granite, hai đài phun nước lớn, nhiều cây xanh và hệ thống điều khiển âm thanh, ánh sáng hiện đại. Vào buổi tối và ngày cuối tuần, người dân và du khách thường đến đây để dạo mát cũng như hòa mình vào không khí sôi động nơi đây. Dọc hai ven đường là những quầy hàng bán đặc sản của Sài Gòn như cơm tấm, cà phê, bánh mỳ, chè…'
+  },
+  {
+    placeID: 12,
+    cityId: 4,
+    title: 'Thành phố Đà Lạt',
+    photo_url: 'https://s3-ap-southeast-1.amazonaws.com/tz-mag-media/wp-content/uploads/2018/06/14174920/image6.jpg',
+    photosArray: [
+      'https://s3-ap-southeast-1.amazonaws.com/tz-mag-media/wp-content/uploads/2018/06/14174920/image6.jpg'
+    ],
+    description:
+      'Đà Lạt là thành phố tỉnh lỵ của tỉnh Lâm Đồng, nằm trên cao nguyên Lâm Viên, thuộc vùng Tây Nguyên, Việt Nam. Từ xa xưa, vùng đất này vốn là địa bàn cư trú của những cư dân người Lạch, người Chil và người Srê thuộc dân tộc Cơ Ho'
   }
 ];
 
-export const ingredients = [
-  {
-    ingredientId: 0,
-    name: 'Oil',
-    photo_url: 'https://ak7.picdn.net/shutterstock/videos/27252067/thumb/11.jpg'
-  },
-  {
-    ingredientId: 1,
-    name: 'Salt',
-    photo_url:
-      'https://image.freepik.com/free-photo/sea-salt-wooden-bowl-isolated-white-background_29402-416.jpg'
-  },
-  {
-    ingredientId: 2,
-    name: 'Russet potatoes',
-    photo_url: 'http://www.valleyspuds.com/wp-content/uploads/Russet-Potatoes-cut.jpg'
-  },
-  {
-    ingredientId: 3,
-    name: 'Paprika',
-    photo_url:
-      'https://image.freepik.com/free-photo/red-chilli-pepper-powder-isolated-white-background_55610-28.jpg'
-  },
-  {
-    ingredientId: 4,
-    name: 'Black Pepper',
-    photo_url: 'https://ak0.picdn.net/shutterstock/videos/26741680/thumb/1.jpg'
-  },
-  {
-    ingredientId: 5,
-    name: 'Celery salt',
-    photo_url: 'https://www.hasiroglugurme.com/images/urunler/Koftelik-Esmer-Bulgur-resim-297.jpg'
-  },
-  {
-    ingredientId: 6,
-    name: 'Dried sage',
-    photo_url:
-      'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Esxjvv7/super-slow-motion-dried-sage-falling-on-white-background_n1xg2gxzg__F0000.png'
-  },
-  {
-    ingredientId: 7,
-    name: 'Garlic powder',
-    photo_url:
-      'https://us.123rf.com/450wm/belchonock/belchonock1808/belchonock180818180/106007144-bowl-of-dry-garlic-powder-on-white-background.jpg?ver=6'
-  },
-  {
-    ingredientId: 8,
-    name: 'Ground allspice',
-    photo_url:
-      'https://www.savoryspiceshop.com/content/mercury_modules/cart/items/2/6/9/2695/allspice-berries-jamaican-ground-1.jpg'
-  },
-  {
-    ingredientId: 9,
-    name: 'Dried oregano',
-    photo_url: 'https://frutascharito.es/886-large_default/oregano.jpg'
-  },
-  {
-    ingredientId: 10,
-    name: 'Dried basil',
-    photo_url: 'https://www.honeychop.com/wp-content/uploads/2015/09/Dried-Mint.png'
-  },
-  {
-    ingredientId: 11,
-    name: 'Dried marjoram',
-    photo_url: 'https://images-na.ssl-images-amazon.com/images/I/71YATIBqBYL._SX355_.jpg'
-  },
-  {
-    ingredientId: 12,
-    name: 'All-purpose flour',
-    photo_url:
-      'https://images.assetsdelivery.com/compings_v2/seregam/seregam1309/seregam130900036.jpg'
-  },
-  {
-    ingredientId: 13,
-    name: 'Brown sugar',
-    photo_url:
-      'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/BALQTtekliuc6iu4u/rotating-brown-sugar-in-a-white-container-on-white-background_sis0xtbyl_thumbnail-full01.png'
-  },
-  {
-    ingredientId: 14,
-    name: 'Kosher salt',
-    photo_url:
-      'https://d1yn1kh78jj1rr.cloudfront.net/image/preview/r64-6MxPQjlatyfjp/storyblocks-top-view-of-ceramic-salt-cellar-with-coarse-grained-sea-salt-isolated-on-white-background_SPzKionPuV_SB_PM.jpg'
-  },
-  {
-    ingredientId: 15,
-    name: 'Whole chicken',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/two-raw-chicken-drumsticks-isolated-260nw-632125991.jpg'
-  },
-  {
-    ingredientId: 16,
-    name: 'Eggs',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/egg-whites-yolk-cup-isolated-260nw-1072453787.jpg'
-  },
-  {
-    ingredientId: 17,
-    name: 'Quarts neutral oil',
-    photo_url:
-      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimg1.cookinglight.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F4_3_horizontal_-_1200x900%2Fpublic%2Fgettyimages-464433694_0.jpg%3Fitok%3DK42YR2GV&w=400&c=sc&poi=face&q=85'
-  },
-  {
-    ingredientId: 18,
-    name: 'Water',
-    photo_url: 'https://ak1.picdn.net/shutterstock/videos/829561/thumb/11.jpg'
-  },
-  {
-    ingredientId: 19,
-    name: 'Onion Powder',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/mixed-spices-isolated-on-white-260nw-662383828.jpg'
-  },
-  {
-    ingredientId: 20,
-    name: 'MSG',
-    photo_url:
-      'https://img.freepik.com/free-photo/monosodium-glutamate-wood-spoon-white-background_55883-399.jpg?size=626&ext=jpg'
-  },
-  {
-    ingredientId: 21,
-    name: 'Chicken Breast',
-    photo_url:
-      'https://us.123rf.com/450wm/utima/utima1602/utima160200063/53405187-raw-chicken-breast-fillets.jpg?ver=6'
-  },
-  {
-    ingredientId: 22,
-    name: 'Onion chopped',
-    photo_url: 'https://s3.envato.com/files/246703499/IMG_1752_5.jpg'
-  },
-  {
-    ingredientId: 23,
-    name: 'Tomato paste',
-    photo_url:
-      'http://d3e1m60ptf1oym.cloudfront.net/45bab59a-363c-11e1-ab4e-bf4c2e0bb026/PANELA_xgaplus.jpg'
-  },
-  {
-    ingredientId: 24,
-    name: 'Chilli Powder',
-    photo_url:
-      'https://us.123rf.com/450wm/nuttapong/nuttapong1505/nuttapong150500009/40458002-paprika-powder-isolated-on-white-background.jpg?ver=6'
-  },
-  {
-    ingredientId: 25,
-    name: 'Ground Beef',
-    photo_url:
-      'https://images.radio.com/kmoxam/s3fs-public/styles/nts_image_cover_tall_775x425/public/dreamstime_s_39607998.jpg?XCM.w1UGOp9sVKkWGQZe7_JIsRddxoIK&itok=3M6KcFLH&c=73fb6497175b4c1a5c79e3ede816656a'
-  },
-  {
-    ingredientId: 26,
-    name: 'Can kidney beans, rinsed and drained ',
-    photo_url:
-      'https://www.seriouseats.com/images/2014/04/20140414-pile-of-beans-primary-1500x1125.jpg'
-  },
-  {
-    ingredientId: 27,
-    name: 'Large Tortillas',
-    photo_url: 'https://upload.wikimedia.org/wikipedia/commons/5/56/NCI_flour_tortillas.jpg'
-  },
-  {
-    ingredientId: 28,
-    name: 'Firtos',
-    photo_url:
-      'https://previews.123rf.com/images/ksena32/ksena321510/ksena32151000090/45863494-fried-fish-on-a-white-background.jpg'
-  },
-  {
-    ingredientId: 29,
-    name: 'Shredded cheddar',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/top-view-small-bowl-filled-260nw-284460308.jpg'
-  },
-  {
-    ingredientId: 30,
-    name: 'Lime',
-    photo_url: 'https://ak8.picdn.net/shutterstock/videos/23271748/thumb/1.jpg'
-  },
-
-  {
-    ingredientId: 31,
-    name: 'Ground cumin',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/pile-cumin-powder-isolated-on-260nw-1193262853.jpg'
-  },
-  {
-    ingredientId: 32,
-    name: 'Cayenne pepper',
-    photo_url: 'https://ak7.picdn.net/shutterstock/videos/11461337/thumb/1.jpg'
-  },
-  {
-    ingredientId: 33,
-    name: 'Flaky white fish',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/roach-river-fish-isolated-on-260nw-277764143.jpg'
-  },
-  {
-    ingredientId: 34,
-    name: 'Avocado',
-    photo_url:
-      'https://www.redwallpapers.com/public/redwallpapers-large-thumb/avocado-cut-stone-leaves-white-background-free-stock-photos-images-hd-wallpaper.jpg'
-  },
-  {
-    ingredientId: 35,
-    name: 'Red Pepper Flakes',
-    photo_url:
-      'https://as1.ftcdn.net/jpg/02/06/55/10/500_F_206551074_mVczUrAWOSMaw8kR48FQDQBqDw47jCtL.jpg'
-  },
-  {
-    ingredientId: 36,
-    name: 'Onions',
-    photo_url: 'http://www.allwhitebackground.com/images/2/2650.jpg'
-  },
-  {
-    ingredientId: 37,
-    name: 'Green Pepper',
-    photo_url: 'https://ak9.picdn.net/shutterstock/videos/4055509/thumb/1.jpg'
-  },
-  {
-    ingredientId: 38,
-    name: 'Red Pepper',
-    photo_url: 'https://ak9.picdn.net/shutterstock/videos/10314179/thumb/1.jpg'
-  },
-  {
-    ingredientId: 39,
-    name: 'Pizza dough',
-    photo_url:
-      'https://image.shutterstock.com/image-photo/fresh-raw-dough-pizza-bread-260nw-518950903.jpg'
-  },
-  {
-    ingredientId: 40,
-    name: 'Ketchup sauce',
-    photo_url:
-      'https://st2.depositphotos.com/5262887/11050/i/950/depositphotos_110501208-stock-photo-ketchup-bowl-isolated-on-white.jpg'
-  },
-  {
-    ingredientId: 41,
-    name: 'Hot Sauce',
-    photo_url:
-      'https://media.istockphoto.com/photos/opened-can-of-spaghetti-sauce-on-a-white-background-picture-id497704752?k=6&m=497704752&s=612x612&w=0&h=JnL54buYu1Z3fGtd8uNdjFxiAKwlxoDluD6jbIfSaZI='
-  },
-  {
-    ingredientId: 42,
-    name: 'Butter',
-    photo_url: 'https://redrockstoffee.com/media/2016/11/AdobeStock_76417550.jpeg'
-  },
-  {
-    ingredientId: 43,
-    name: 'Heavy Cream',
-    photo_url:
-      'https://media.istockphoto.com/photos/mayonnaise-in-bowl-isolated-on-white-background-picture-id614981116?k=6&m=614981116&s=612x612&w=0&h=LtbsI2HQXOTERYuP9YJ2PJfRF3W6DcyZ798fxMcQWC0='
-  },
-  {
-    ingredientId: 44,
-    name: 'whole-milk plain yogurt',
-    photo_url:
-      'https://st.depositphotos.com/2757384/3317/i/950/depositphotos_33170129-stock-photo-pouring-a-glass-of-milk.jpg'
-  },
-  {
-    ingredientId: 45,
-    name: 'Chesse',
-    photo_url: 'https://ak7.picdn.net/shutterstock/videos/3619997/thumb/1.jpg'
-  },
-  {
-    ingredientId: 46,
-    name: 'Mozzarella',
-    photo_url:
-      'https://t3.ftcdn.net/jpg/02/06/73/98/500_F_206739841_suPu6qDPHlowFqx9qo8fLqV8sNevL2g3.jpg'
-  },
-  {
-    ingredientId: 47,
-    name: 'celery stalks',
-    photo_url:
-      'https://cdn4.eyeem.com/thumb/6d1b3957c7caa9b73c3e0f820ef854b931808139-1538043742765/w/750'
-  },
-  {
-    ingredientId: 48,
-    name: 'Parmesan Chesse',
-    photo_url: 'https://ak7.picdn.net/shutterstock/videos/3721877/thumb/1.jpg'
-  },
-  {
-    ingredientId: 49,
-    name: 'pancetta',
-    photo_url:
-      'https://previews.123rf.com/images/onlyfabrizio/onlyfabrizio1606/onlyfabrizio160600002/60198502-raw-stripes-of-pancetta-stesa-on-a-white-background.jpg'
-  },
-  {
-    ingredientId: 50,
-    name: 'Spaghetti',
-    photo_url:
-      'https://previews.123rf.com/images/mfron/mfron1204/mfron120400098/13306773-bunch-of-spaghetti-nudeln-isoliert-auf-wei%C3%9Fem-hintergrund.jpg'
-  },
-  {
-    ingredientId: 51,
-    name: 'Garlic',
-    photo_url: 'https://image.freepik.com/free-photo/fresh-garlic-white-background_1339-17012.jpg'
-  },
-  {
-    ingredientId: 52,
-    name: 'Lasagna noodles',
-    photo_url:
-      'https://previews.123rf.com/images/velkol/velkol1110/velkol111000004/11083085-an-image-of-raw-lasagna-on-white-background.jpg'
-  },
-  {
-    ingredientId: 53,
-    name: 'Italian sauce',
-    photo_url:
-      'https://previews.123rf.com/images/arinahabich/arinahabich1504/arinahabich150400858/38827029-raw-italian-sausage-on-a-white-background-.jpg'
-  },
-  {
-    ingredientId: 54,
-    name: 'Crushed Tomatoes',
-    photo_url:
-      'https://previews.123rf.com/images/merkulovnik/merkulovnik1406/merkulovnik140600100/28751626-crushed-tomato-isolated-on-white-background.jpg'
-  },
-  {
-    ingredientId: 55,
-    name: 'Sugar',
-    photo_url:
-      'https://previews.123rf.com/images/sommai/sommai1411/sommai141100034/33199985-sugar-cubes-in-a-bowl-isolated-on-white-background.jpg'
-  },
-  {
-    ingredientId: 56,
-    name: 'minced fresh parsley',
-    photo_url:
-      'https://t4.ftcdn.net/jpg/02/15/78/05/240_F_215780551_Eid0xpP1M2fokvuEcvJj8uqhROLJkb3p.jpg'
-  },
-  {
-    ingredientId: 57,
-    name: 'ricotta cheese',
-    photo_url:
-      'https://previews.123rf.com/images/barkstudio/barkstudio1608/barkstudio160800351/61418602-ricotta-cheese-into-a-bowl-in-white-background.jpg'
-  },
-  {
-    ingredientId: 58,
-    name: ' fennel seed',
-    photo_url:
-      'https://previews.123rf.com/images/pinkomelet/pinkomelet1710/pinkomelet171000227/88851299-close-up-the-fennel-seed-on-white-background.jpg'
-  },
-  {
-    ingredientId: 59,
-    name: 'Banana',
-    photo_url:
-      'https://www.conservationmagazine.org/wp-content/uploads/2013/04/sterile-banana.jpg'
-  },
-  {
-    ingredientId: 60,
-    name: 'Frozen Straberries',
-    photo_url:
-      'https://www.cascadianfarm.com/wp-content/uploads/2018/12/Strawberries_Main_0218.png'
-  },
-  {
-    ingredientId: 61,
-    name: 'Greek Yogurt',
-    photo_url:
-      'http://images.media-allrecipes.com/userphotos/960x960/3758635.jpg'
-  },
-];

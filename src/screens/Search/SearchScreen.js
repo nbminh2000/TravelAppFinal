@@ -10,10 +10,10 @@ import styles from './styles';
 import { ListItem, SearchBar } from 'react-native-elements';
 import MenuImage from '../../components/MenuImage/MenuImage';
 import {
-  getCategoryName,
-  getRecipesByRecipeName,
-  getRecipesByCategoryName,
-  getRecipesByIngredientName
+  getCityName,
+  getPlacesByPlaceName,
+  getPlacesByCityName,
+  getPlacesByIngredientName
 } from '../../data/MockDataAPI';
 
 export default class SearchScreen extends React.Component {
@@ -73,11 +73,10 @@ export default class SearchScreen extends React.Component {
   }
 
   handleSearch = text => {
-    var recipeArray1 = getRecipesByRecipeName(text);
-    var recipeArray2 = getRecipesByCategoryName(text);
-    var recipeArray3 = getRecipesByIngredientName(text);
-    var aux = recipeArray1.concat(recipeArray2);
-    var recipeArray = [...new Set(aux)];
+    var placeArray1 = getPlacesByPlaceName(text);
+    var placeArray2 = getPlacesByCityName(text);
+    var aux = placeArray1.concat(placeArray2);
+    var placeArray = [...new Set(aux)];
     if (text == '') {
       this.setState({
         value: text,
@@ -86,7 +85,7 @@ export default class SearchScreen extends React.Component {
     } else {
       this.setState({
         value: text,
-        data: recipeArray
+        data: placeArray
       });
     }
   };
@@ -95,16 +94,16 @@ export default class SearchScreen extends React.Component {
     return this.state.value;
   };
 
-  onPressRecipe = item => {
-    this.props.navigation.navigate('Recipe', { item });
+  onPressPlace = item => {
+    this.props.navigation.navigate('Place', { item });
   };
 
-  renderRecipes = ({ item }) => (
-    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)' onPress={() => this.onPressRecipe(item)}>
+  renderPlaces = ({ item }) => (
+    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)' onPress={() => this.onPressPlace(item)}>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
+        <Text style={styles.city}>{getCityName(item.cityId)}</Text>
       </View>
     </TouchableHighlight>
   );
@@ -117,8 +116,8 @@ export default class SearchScreen extends React.Component {
           showsVerticalScrollIndicator={false}
           numColumns={2}
           data={this.state.data}
-          renderItem={this.renderRecipes}
-          keyExtractor={item => `${item.recipeId}`}
+          renderItem={this.renderPlaces}
+          keyExtractor={item => `${item.placeId}`}
         />
       </View>
     );

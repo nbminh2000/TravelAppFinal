@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { RecipeCard } from '../../AppStyles';
+import { PlaceCard } from '../../AppStyles';
 
 const styles = StyleSheet.create({
-  container: RecipeCard.container,
-  photo: RecipeCard.photo,
-  title: RecipeCard.title,
-  category: RecipeCard.category,
+  container: PlaceCard.container,
+  photo: PlaceCard.photo,
+  title: PlaceCard.title,
+  category: PlaceCard.category,
   btnIcon: {
     height: 14,
     width: 14
